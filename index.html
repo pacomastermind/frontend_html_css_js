@@ -9,6 +9,31 @@
     <title>MasterDots enter</title>
 </head>
 <body>
-    
+    <header>
+        <img src="./img/logo.png" alt="logo masterdocs">
+    </header>
+    <main>
+        <form action="#">
+            <div class="itemform">
+                <label for="nick">introduce tu nick</label>
+                <input type="text" id="nick" minlength="2" maxlength="64" size="14" required>
+            </div>
+            <div class="itemform">
+                <label for="tamano">tamaño del juego</label>
+                <select name="tamano" id="tamano">
+                    <option value="">--Por favor elige un tamaño--</option>
+                    <option value="dog">4x4</option>
+                    <option value="cat">5x5</option>
+                    <option value="hamster">6x6</option>
+                </select>
+            </div>3
+            <div class="itemform">   
+                <input type="submit" value="JUGAR">
+            </div> 
+        </form>
+    </main>
+    <footer>
+        Curso Frontend JS, HTML y CSS
+    </footer>
 </body>
 </html>
