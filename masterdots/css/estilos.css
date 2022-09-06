@@ -65,3 +65,9 @@ footer{
     font-weight: 400;
     font-size: 18px;
 }
+#error{
+    text-align: center;
+    color: #fd0c49;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
