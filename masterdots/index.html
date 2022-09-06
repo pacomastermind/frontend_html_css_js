@@ -21,18 +21,25 @@
         </div>
         <form id="form_entrada" action="juego.html">
             <div class="itemform">
-                <label for="nick">introduce tu nick</label>
-                <input type="text" value="@" id="nicka" readonly>
-                <input type="text" id="nick" value="nick">
+                <label for="nick">introduce tu nick*</label>
+                <input type="text" value="@" id="nicka"readonly>
+                <input type="text" id="nick" value="nick" required minlength="2">
             </div>
             <div class="itemform">
-                <label for="tamano">tamaño del juego</label>
+                <label for="email">correo electorónico</label>
+                <input type="email" id="email" value="yo@iam.es">
+            </div>
+            <div class="itemform">
+                <label for="tamano">tamaño del juego*</label>
                 <select name="tamano" id="tamano">
                     <option value="0">--Por favor elige un tamaño--</option>
                     <option value="4">4x4</option>
                     <option value="5">5x5</option>
                     <option value="6">6x6</option>
                 </select>
+            </div>
+            <div class="itemform">
+                <p>* Obligatorio</p>
             </div>
             <div class="itemform">   
                 <input type="submit" value="JUGAR" id ="jugar">

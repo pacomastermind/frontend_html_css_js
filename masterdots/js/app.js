@@ -3,12 +3,14 @@ COMPROBACION DE FORMULARIO
 */
 function comprobar(event){
     //Comprobación campo nick
-    if(nick.value.length==0){
+    //Antigua comprobación sobre longitud
+    //if(nick.value.length==0){
+    if(nick.value.match(/\d\w/g)){
         event.preventDefault();
         //Ponemos el foco en la caja del nick
         nick.focus();
         //Escribimos el error
-        error.innerText="El campo nick no puede estar vacío";
+        error.innerText="El campo nick no puede comenzar con numeros";
         //Salimos
         return false;
     }else if(tamano.value=="0"){
