@@ -3,6 +3,13 @@ JS PÁGINA PRINCIPAL
 
 COMPROBACION DE FORMULARIO
 */
+//Recogemos todos los objetos que necesitaremos para interactuar posteriormente
+const form_entrada = document.getElementById("form_entrada");
+const nick = document.getElementById("nick");
+const tamano = document.getElementById("tamano");
+const email = document.getElementById("email");
+const error = document.getElementById("error");
+
 function comprobar(event){
     //Comprobación campo nick
     //Antigua comprobación sobre longitud
@@ -30,13 +37,11 @@ function comprobar(event){
     historicoUsuarios(nick);
     return true;
 }
+function capturarElem(event){
+    console.log("Objetos del DOM cargados");
+}
+document.addEventListener('DOMContentLoaded', capturarElem);
 
-//Recogemos todos los objetos que necesitaremos para interactuar posteriormente
-const form_entrada = document.getElementById("form_entrada");
-const nick = document.getElementById("nick");
-const tamano = document.getElementById("tamano");
-const email = document.getElementById("email");
-const error = document.getElementById("error");
 //Añadimos el listener para el submit del formulario
 form_entrada.addEventListener('submit', comprobar);
 //Comprobamos si hay un error de la sesion
