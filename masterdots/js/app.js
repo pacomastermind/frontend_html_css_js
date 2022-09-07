@@ -38,3 +38,6 @@ const email = document.getElementById("email");
 const error = document.getElementById("error");
 //Añadimos el listener para el submit del formulario
 form_entrada.addEventListener('submit', comprobar);
+//Comprobamos si hay un error de la sesion
+getDatosUsuario();
+checkErrorSession(error);
