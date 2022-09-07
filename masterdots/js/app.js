@@ -26,7 +26,8 @@ function comprobar(event){
         return false;
     }
     //Los datos son correctos. Guardamos en la sesión los datos de usuario
-    datosUsuario();
+    datosUsuario(nick,tamano,email);
+    historicoUsuarios(nick);
     return true;
 }
 

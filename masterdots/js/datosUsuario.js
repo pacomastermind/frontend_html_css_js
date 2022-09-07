@@ -5,7 +5,7 @@ var tamanoSession;
 var emailSession;
 var errorSession;
 
-function datosUsuario(){
+function datosUsuario(nick,tamano,email){
     sessionStorage.setItem('nick', nick.value);
     sessionStorage.setItem('tamano', tamano.value);
     sessionStorage.setItem('email', email.value);
@@ -37,9 +37,29 @@ function checkErrorSession(errorHTML){
 }
 
 function mostrarDatosUsuario(){
-    
     console.log("nick "+nickSession);
     console.log("tamano "+tamanoSession);
     console.log("email "+emailSession);
+}
+
+function historicoUsuarios(nick){
+    if(localStorage.getItem('historico')==null){
+        //Primera vez
+        let usuario={
+            nick:nick.value,
+            fecha:Date.now()
+        }
+        let historico=[];
+        historico.push(usuario);
+        localStorage.setItem('historico',JSON.stringify(historico));
+    }else{
+        let usuario={
+            nick:nick.value,
+            fecha:Date.now()
+        }
+        historico=JSON.parse(localStorage.getItem('historico'));
+        historico.push(usuario);
+        localStorage.setItem('historico',JSON.stringify(historico));
+    }
 }
 
