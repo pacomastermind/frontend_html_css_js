@@ -1,4 +1,6 @@
 /*
+JS PÁGINA PRINCIPAL
+
 COMPROBACION DE FORMULARIO
 */
 function comprobar(event){
@@ -23,12 +25,16 @@ function comprobar(event){
         event.preventDefault();
         return false;
     }
+    //Los datos son correctos. Guardamos en la sesión los datos de usuario
+    datosUsuario();
     return true;
 }
 
-//Añadimos el listener para el submit del formulario
+//Recogemos todos los objetos que necesitaremos para interactuar posteriormente
 const form_entrada = document.getElementById("form_entrada");
 const nick = document.getElementById("nick");
 const tamano = document.getElementById("tamano");
+const email = document.getElementById("email");
 const error = document.getElementById("error");
+//Añadimos el listener para el submit del formulario
 form_entrada.addEventListener('submit', comprobar);
