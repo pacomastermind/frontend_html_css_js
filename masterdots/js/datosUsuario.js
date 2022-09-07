@@ -1,4 +1,9 @@
-//ALMACENAMIENTO DE DATOS DE PARTIDA MEDIANTE SESSIONSTORAGE
+/*
+*   Funciones relacionadas con el almacenamiento de información en SessionStorage/LocalStorage
+*   @author Paco Gomez <paco@mastermind.ac>
+*/
+
+// ALMACENAMIENTO DE DATOS DE PARTIDA MEDIANTE SESSIONSTORAGE
 // Salvamos los datos de la partida
 var nickSession;
 var tamanoSession;
@@ -6,6 +11,13 @@ var emailSession;
 var errorSession;
 var geolocalizacionTxt="";
 
+/**
+ * Almacena en sessionStorage nick,tamano e email
+ * @constructor
+ * @param {HTMLElement} nick - nick
+ * @param {HTMLElement} tamano - tamño del panel
+ * @param {HTMLElement} email - email
+ */
 function datosUsuario(nick,tamano,email){
     sessionStorage.setItem('nick', nick.value);
     sessionStorage.setItem('tamano', tamano.value);
