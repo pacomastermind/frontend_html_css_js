@@ -4,6 +4,7 @@ var nickSession;
 var tamanoSession;
 var emailSession;
 var errorSession;
+var geolocalizacionTxt="";
 
 function datosUsuario(nick,tamano,email){
     sessionStorage.setItem('nick', nick.value);
@@ -16,6 +17,17 @@ function getDatosUsuario(){
     tamanoSession = sessionStorage.getItem('tamano');
     emailSession = sessionStorage.getItem('email');
     errorSession = sessionStorage.getItem('error');
+        //Incorporamos geolocalización
+        if (!navigator.geolocation) {
+            geolocalizacionTxt = 'El navegador no soporta geolocalizacion';
+          } else {
+            navigator.geolocation.getCurrentPosition(
+                //Exito
+                (position)=>{geolocalizacionTxt = 'Latitud:'+position.coords.latitude+'Longitud:'+position.coords.longitude},
+                //Error 
+                ()=> {geolocalizacionTxt = 'El navegador ha dado un error obteniendo posicion'}
+            );
+        }
 }
 
 function checkDatosUsuario(){
@@ -43,20 +55,30 @@ function mostrarDatosUsuario(){
 }
 
 function historicoUsuarios(nick){
+    
+    //Incorporamos geolocalización
+    /* OJO CON LAS PETICIONES ASINCRONAS
+    if (!navigator.geolocation) {
+        geolocalizacionTxt = 'El navegador no soporta geolocalizacion';
+      } else {
+        navigator.geolocation.getCurrentPosition(
+            //Exito
+            (position)=>{geolocalizacionTxt = 'Latitud:'+position.coords.latitude+'Longitud:'+position.coords.longitude},
+            //Error 
+            ()=> {geolocalizacionTxt = 'El navegador ha dado un error obteniendo posicion'}
+        );
+    }*/
+    let usuario={
+        nick:nick.value,
+        fecha:Date.now(),
+        posicion:geolocalizacionTxt
+    }
     if(localStorage.getItem('historico')==null){
         //Primera vez
-        let usuario={
-            nick:nick.value,
-            fecha:Date.now()
-        }
         let historico=[];
         historico.push(usuario);
         localStorage.setItem('historico',JSON.stringify(historico));
     }else{
-        let usuario={
-            nick:nick.value,
-            fecha:Date.now()
-        }
         historico=JSON.parse(localStorage.getItem('historico'));
         historico.push(usuario);
         localStorage.setItem('historico',JSON.stringify(historico));
