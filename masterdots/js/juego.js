@@ -7,7 +7,8 @@ STORAGE
 //Variables necesarias para la dinámica del juego
 var comienzaMarcar=false;
 var classMarcada="";
-var idMarcado=-1
+var idMarcado=-1;
+var idMarcados=[];
 var adyacentes=[];
 //PROPONER ESTE ERROR
 //var tamano = parseInt(tamanoSession);
@@ -45,6 +46,7 @@ function comenzarMarcar(event){
     }
     //Calculamos adyacentes
     idMarcado=parseInt(event.target.id);
+    idMarcados.push(idMarcado);
     calcularAdyacentes();
 }
 function continuaMarcando(event){
@@ -56,6 +58,7 @@ function continuaMarcando(event){
         if(adyacentes.includes(idNuevoMarcado)&&event.target.classList.contains(classMarcada)){
             //Un nuevo elemento se ha unido
             idMarcado=parseInt(event.target.id);
+            idMarcados.push(idMarcado);
             event.target.parentElement.classList.add(classMarcada);
             calcularAdyacentes();
         }
