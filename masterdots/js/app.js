@@ -9,7 +9,11 @@ const nick = document.getElementById("nick");
 const tamano = document.getElementById("tamano");
 const email = document.getElementById("email");
 const error = document.getElementById("error");
-const avatarImg = document.getElementById("error");
+const avatarItems=document.getElementsByClassName('avatarImgItem');
+const avatarImg=document.getElementById('avatarImg');
+const avatarCont=document.getElementById('avatarContainer');
+//Item que almacenará la imagen que se está moviendo
+var itemImg;
 
 function comprobar(event){
     //Comprobación campo nick
@@ -44,10 +48,26 @@ function capturarElem(event){
 function avantarDrag(event){
    console.log("Movemos");
 }
+
+function moverImg(event){
+    itemImg=event.target;
+}
+
+function cambiarImg(event){
+    event.target.src=itemImg.src;
+}
+
+
 document.addEventListener('DOMContentLoaded', capturarElem);
-document.addEventListener("dragstart", avantarDrag);
 //Añadimos el listener para el submit del formulario
 form_entrada.addEventListener('submit', comprobar);
+//Añadimos los dragstart a los elementos y la gestión del elemento seleccionado
+for (let item of avatarItems) {
+    item.addEventListener('dragstart',moverImg);
+}
+//Añadimos el evento del drop al container
+avatarCont.addEventListener('dragover',e=>{e.preventDefault()});
+avatarCont.addEventListener('drop',cambiarImg);
 //Comprobamos si hay un error de la sesion
 getDatosUsuario();
 checkErrorSession(error);

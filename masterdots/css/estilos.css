@@ -78,7 +78,7 @@ footer{
 #avatar{
     float:left;
 }
-#avatarImg{
+#avatarContainer{
     display: flex;
     background-color: #fff;
     border: solid 1px #fd0c49;
@@ -97,7 +97,7 @@ footer{
     gap: 5px;
     margin-top: 30px;
 }
-.avatarImgItem{
+.avatarItem{
     background-color: #fff;
     border: solid 1px #fd0c49;
     border-radius: 5px;
