@@ -64,6 +64,25 @@ function continuaMarcando(event){
         }
     }
 }
+function finalizarMarcando(event){
+    comienzaMarcar=false;
+    idMarcado=-1;
+    adyacentes=[];
+    let color=["rojo","verde"];
+    //Calculamos puntuaciones
+    if(idMarcados.length>1){
+        document.getElementById("puntuacion").value=parseInt(document.getElementById("puntuacion").value)+idMarcados.length;
+    }
+    //Cambiamos el color a los señalados
+    for (let index = 0; index < idMarcados.length; index++) {
+        let marcado=document.getElementById(idMarcados[index]);
+        colorRnd=getRandomInt(2);
+        marcado.classList.remove(classMarcada);
+        marcado.parentElement.classList.remove(classMarcada);
+        marcado.classList.add(color[colorRnd]);
+    }
+    idMarcados=[];
+}
 
 //Capturamos los datos de la sesión y colocamos nick y avatar
 getDatosUsuario();
@@ -92,12 +111,9 @@ for (let item of containerItems) {
     item.addEventListener('mousedown',comenzarMarcar);
     item.addEventListener('mouseover',continuaMarcando);
 }
-//Reseteare cuando suelte el raton
-document.addEventListener('mouseup',(event)=>{
-    comienzaMarcar=false;
-    idMarcado=-1;
-    adyacentes=[];
-})
+//Reseteare cuando suelte el raton y calcular puntuaciones
+document.addEventListener('mouseup',finalizarMarcando);
+
 //Comprobamos que los datos no sean nulos
 let comprobarDatos=checkDatosUsuario();
 if(!comprobarDatos) location="index.html";
