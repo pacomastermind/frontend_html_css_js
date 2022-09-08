@@ -10,14 +10,14 @@ var classMarcada="";
 var idMarcado=-1;
 var idMarcados=[];
 var adyacentes=[];
-//PROPONER ESTE ERROR
+var nIntervId;
+//PROPONER ESTE ERROR SE CAPTURA ANTES DE QUE EXISTA. NaN
 //var tamano = parseInt(tamanoSession);
 var tamano = -1;
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
-
 function calcularAdyacentes(){
     adyacentes=[];
     //Calculamos todos los adyacentes
@@ -83,7 +83,19 @@ function finalizarMarcando(event){
     }
     idMarcados=[];
 }
-
+function cuentaAtras(){
+    let tmpoRestante=parseInt(document.getElementById("tmpo").value)-1;
+    document.getElementById("tmpo").value=tmpoRestante;
+    if(tmpoRestante==0){
+        clearInterval(nIntervId);
+        //FIN DE LA PARTIDA
+        for (let item of containerItems) {
+            item.removeEventListener('mousedown',comenzarMarcar);
+            item.removeEventListener('mouseover',continuaMarcando);
+            document.removeEventListener('mouseup',finalizarMarcando);
+        }
+    }
+}
 //Capturamos los datos de la sesión y colocamos nick y avatar
 getDatosUsuario();
 document.getElementById("nick").value=nickSession;
@@ -119,3 +131,5 @@ let comprobarDatos=checkDatosUsuario();
 if(!comprobarDatos) location="index.html";
 //Mostramos los datos de la sesión
 mostrarDatosUsuario();
+//Lanzamos el timer
+nIntervId=setInterval(cuentaAtras, 1000);
