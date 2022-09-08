@@ -9,6 +9,7 @@ var nickSession;
 var tamanoSession;
 var emailSession;
 var errorSession;
+var avatarSession;
 var geolocalizacionTxt="";
 
 /**
@@ -18,10 +19,11 @@ var geolocalizacionTxt="";
  * @param {HTMLElement} tamano - tamño del panel
  * @param {HTMLElement} email - email
  */
-function datosUsuario(nick,tamano,email){
+function datosUsuario(nick,tamano,email,avatarImg){
     sessionStorage.setItem('nick', nick.value);
     sessionStorage.setItem('tamano', tamano.value);
     sessionStorage.setItem('email', email.value);
+    sessionStorage.setItem('avatar', avatarImg.src);
 }
 
 function getDatosUsuario(){
@@ -29,6 +31,7 @@ function getDatosUsuario(){
     tamanoSession = sessionStorage.getItem('tamano');
     emailSession = sessionStorage.getItem('email');
     errorSession = sessionStorage.getItem('error');
+    avatarSession = sessionStorage.getItem('avatar');
         //Incorporamos geolocalización
         if (!navigator.geolocation) {
             geolocalizacionTxt = 'El navegador no soporta geolocalizacion';
