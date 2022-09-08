@@ -9,6 +9,7 @@ const nick = document.getElementById("nick");
 const tamano = document.getElementById("tamano");
 const email = document.getElementById("email");
 const error = document.getElementById("error");
+const avatarImg = document.getElementById("error");
 
 function comprobar(event){
     //Comprobación campo nick
@@ -40,8 +41,11 @@ function comprobar(event){
 function capturarElem(event){
     console.log("Objetos del DOM cargados");
 }
+function avantarDrag(event){
+   console.log("Movemos");
+}
 document.addEventListener('DOMContentLoaded', capturarElem);
-
+document.addEventListener("dragstart", avantarDrag);
 //Añadimos el listener para el submit del formulario
 form_entrada.addEventListener('submit', comprobar);
 //Comprobamos si hay un error de la sesion
