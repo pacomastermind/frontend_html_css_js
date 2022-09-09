@@ -37,11 +37,11 @@ function calcularAdyacentes(){
 function comenzarMarcar(event){
     if(!comienzaMarcar) comienzaMarcar=true;
     if(event.target.classList.contains('rojo')){
-        event.target.parentElement.classList.add('rojo');
+        event.target.parentElement.classList.add('rojoDelay');
         classMarcada='rojo';
     }
     else{
-        event.target.parentElement.classList.add('verde');
+        event.target.parentElement.classList.add('verdeDelay');
         classMarcada='verde';
     }
     //Calculamos adyacentes
@@ -59,7 +59,7 @@ function continuaMarcando(event){
             //Un nuevo elemento se ha unido
             idMarcado=parseInt(event.target.id);
             idMarcados.push(idMarcado);
-            event.target.parentElement.classList.add(classMarcada);
+            event.target.parentElement.classList.add(classMarcada+'Delay');
             calcularAdyacentes();
         }
     }
@@ -78,7 +78,7 @@ function finalizarMarcando(event){
         let marcado=document.getElementById(idMarcados[index]);
         colorRnd=getRandomInt(2);
         marcado.classList.remove(classMarcada);
-        marcado.parentElement.classList.remove(classMarcada);
+        marcado.parentElement.classList.remove(classMarcada+'Delay');
         marcado.classList.add(color[colorRnd]);
     }
     idMarcados=[];
