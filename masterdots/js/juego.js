@@ -37,11 +37,11 @@ function calcularAdyacentes(){
 function comenzarMarcar(event){
     if(!comienzaMarcar) comienzaMarcar=true;
     if(event.target.classList.contains('rojo')){
-        event.target.parentElement.classList.add('rojoDelay');
+        event.target.parentElement.classList.add('rojo');
         classMarcada='rojo';
     }
     else{
-        event.target.parentElement.classList.add('verdeDelay');
+        event.target.parentElement.classList.add('verde');
         classMarcada='verde';
     }
     //Calculamos adyacentes
@@ -59,7 +59,7 @@ function continuaMarcando(event){
             //Un nuevo elemento se ha unido
             idMarcado=parseInt(event.target.id);
             idMarcados.push(idMarcado);
-            event.target.parentElement.classList.add(classMarcada+'Delay');
+            event.target.parentElement.classList.add(classMarcada);
             calcularAdyacentes();
         }
     }
@@ -78,7 +78,7 @@ function finalizarMarcando(event){
         let marcado=document.getElementById(idMarcados[index]);
         colorRnd=getRandomInt(2);
         marcado.classList.remove(classMarcada);
-        marcado.parentElement.classList.remove(classMarcada+'Delay');
+        marcado.parentElement.classList.remove(classMarcada);
         marcado.classList.add(color[colorRnd]);
     }
     idMarcados=[];
@@ -93,6 +93,12 @@ function cuentaAtras(){
             item.removeEventListener('mousedown',comenzarMarcar);
             item.removeEventListener('mouseover',continuaMarcando);
             document.removeEventListener('mouseup',finalizarMarcando);
+            //Añadimos background al fondo del juego acabado
+            document.getElementById("juegoAcabado").classList.add("juegoAcabadoColor");
+            //Cambiamos los z-index
+            document.getElementById("juego").style.zIndex = "1";
+            document.getElementById("juegoAcabado").style.zIndex = "2";
+            document.getElementById("nuevaPartida").addEventListener('click',(e)=>location.reload());
         }
     }
 }
